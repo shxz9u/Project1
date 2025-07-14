@@ -111,7 +111,7 @@ if (isset($_GET['id'])) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="board.php">커뮤니티</a>
+            <a class="navbar-brand" href="index.php">커뮤니티</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
@@ -142,13 +142,6 @@ if (isset($_GET['id'])) {
                 <div class="post-content">
                     <p><?= nl2br($post['content']) ?></p>
                 </div>
-
-                <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['user_id']): ?>
-                    <form method="POST" action="delete_post.php" onsubmit="return confirm('정말 삭제하시겠습니까?');" style="display:inline;">
-                        <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>">
-                        <button type="submit" class="btn btn-danger btn-custom">삭제</button>
-                    </form>
-                <?php endif; ?>
 
             </div>
         <?php else: ?>
