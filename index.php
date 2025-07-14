@@ -123,7 +123,7 @@ $posts = $stmt->fetchAll();
                             <a href="post_view.php?id=<?= $post['post_id'] ?>" class="text-decoration-none"><?= htmlspecialchars($post['title']) ?></a>
                         </h5>
                         <div class="post-meta">
-                            <span>작성자: <?= htmlspecialchars($post['username']) ?></span>
+                            <span>작성자: <?= htmlspecialchars($post['username']) ?></span> |
                             <span>조회수: <?= $post['views'] ?></span> |
                             <span>작성일: <?= date('Y-m-d H:i', strtotime($post['created_at'])) ?></span>
                         </div>
