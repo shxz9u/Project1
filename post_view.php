@@ -109,25 +109,35 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">커뮤니티</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand" href="index.php">게시판</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <li class="nav-item"><a class="nav-link"
-                                href="profile.php"><?= $_SESSION['username'] ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="logout.php">로그아웃</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link"><?= htmlspecialchars($_SESSION['username']) ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">로그아웃</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href="create_post.php">글쓰기</a>
+                        </li>
                     <?php else: ?>
-                        <li class="nav-item"><a class="nav-link" href="login.php">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="sign_up.php">회원가입</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">로그인</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sign_up.php">회원가입</a>
+                        </li>
                     <?php endif; ?>
                 </ul>
+                </ div>
             </div>
-        </div>
     </nav>
 
     <div class="container my-5" style="padding-top:70px;">
@@ -148,6 +158,11 @@ if (isset($_GET['id'])) {
             <div class="alert alert-danger">
                 <strong>오류!</strong> 게시글을 불러오는 데 실패했습니다.
             </div>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['user_id']): ?>
+            <a class="btn btn-warning btn-custom" href="edit_post.php?id=<?= $post['post_id'] ?>">수정</a>
+            <a class="btn btn-danger btn-custom" href="delete_post.php?id=<?= $post['post_id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
         <?php endif; ?>
     </div>
 
