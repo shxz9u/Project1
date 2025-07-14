@@ -97,8 +97,13 @@ $posts = $stmt->fetchAll();
                             <a class="nav-link" href="logout.php">로그아웃</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary" href="create_post.php">글쓰기</a>
+                            <a class="btn btn-primary me-2" href="create_post.php">글쓰기</a>
                         </li>
+                        <?php if (isset($_COOKIE['is_admin']) && $_COOKIE['is_admin'] === 'true'): ?>
+                            <li class="nav-item">
+                                <a class="btn btn-danger" href="admin.php">관리자 페이지</a>
+                            </li>
+                        <?php endif; ?>
                     <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">로그인</a>

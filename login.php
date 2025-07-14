@@ -17,9 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
+
+            if ($user['is_admin'] == 1) {
+                setcookie('is_admin', 'true', time() + 3600, "/");
+            } else {
+                setcookie('is_admin', 'false', time() + 3600, "/");
+            }
+
             echo "<script>
-            alert('로그인이 되었습니다.');
-            window.location.href = 'index.php';
+                alert('로그인이 되었습니다.');
+                window.location.href = 'index.php';
             </script>";
             exit;
         } else {
@@ -30,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 
 
