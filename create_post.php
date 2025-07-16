@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $user_id = $_SESSION['user_id'];
 
+
     $sql = "INSERT INTO posts (user_id, title, content) VALUES (?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$user_id, $title, $content]);

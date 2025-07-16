@@ -147,7 +147,7 @@ if (isset($_GET['id'])) {
                 <div class="post-meta mb-3">
                     <span>작성자: <?= $post['username'] ?></span> |
                     <span>조회수: <?= $post['views'] ?></span> |
-                    <span>작성일: <?= date('Y-m-d H:i', strtotime($post['created_at'])) ?></span>
+                    <span>작성일: <?= date('Y-m-d H:i', strtotime($post['updated_at'])) ?></span>
                 </div>
                 <div class="post-content">
                     <p><?= nl2br($post['content']) ?></p>

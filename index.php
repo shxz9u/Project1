@@ -1,5 +1,6 @@
 ﻿<?php
 session_start();
+date_default_timezone_set('Asia/Seoul');
 include 'db.php';
 
 $sql = "SELECT * FROM posts JOIN users ON posts.user_id = users.user_id ORDER BY posts.created_at DESC";
@@ -130,7 +131,7 @@ $posts = $stmt->fetchAll();
                         <div class="post-meta">
                             <span>작성자: <?= htmlspecialchars($post['username']) ?></span> |
                             <span>조회수: <?= $post['views'] ?></span> |
-                            <span>작성일: <?= date('Y-m-d H:i', strtotime($post['created_at'])) ?></span>
+                            <span>작성일: <?= date('Y-m-d H:i', strtotime($post['updated_at'])) ?></span>
                         </div>
                     </div>
                 </div>
